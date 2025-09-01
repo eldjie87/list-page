@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     async function updateItemList() {
         try {
-            const res = await fetch('https://rose.eldjie.uk/api/shopping-list');
+            const res = await fetch('https://new.eldjie.uk/api/get-items');
             const items = await res.json();
             itemList.innerHTML = '';
             let total = 0;
