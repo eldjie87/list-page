@@ -1,52 +1,70 @@
+/* style.css */
+
+/* Reset dan font */
 body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: #f7f7f7;
-  margin: 0;
-  padding: 0;
+    font-family: Arial, sans-serif;
+    margin: 20px;
 }
 
-.container {
-  max-width: 500px;
-  margin: 40px auto;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  padding: 32px 24px;
+/* Container utama */
+#shopping-list {
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-h1 {
-  text-align: center;
-  color: #333;
-  margin-bottom: 24px;
+/* List items */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }
 
-.tanggal {
-  text-align: center;
-  font-size: 18px;
-  color: #555;
-  margin-bottom: 18px;
+li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-bottom: 1px solid #ccc;
+    align-items: center;
 }
 
-#item-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 24px 0;
+/* Tombol delete */
+.deleteProduct {
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+    margin-left: 10px;
 }
 
-#item-list li {
-  background: #e3eafc;
-  margin-bottom: 10px;
-  padding: 12px 16px;
-  border-radius: 6px;
-  color: #2d3a4a;
-  font-size: 16px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+/* Google Translate */
+#google_translate_element {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
 }
 
-#total-price {
-  font-size: 20px;
-  font-weight: bold;
-  color: #1a73e8;
-  text-align: right;
-  margin-top: 16px;
+/* Judul & total */
+h2 {
+    margin: 0;
+}
+
+.total {
+    font-weight: bold;
+    color: green;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    li span {
+        margin-bottom: 4px;
+    }
+
+    #shopping-list {
+        margin: 10px;
+    }
 }
