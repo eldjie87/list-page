@@ -88,7 +88,7 @@ li:hover {
 }
 
 /* Responsive */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     #shopping-list { padding: 8px 10px; }
     li, .product-row { flex-direction: column; align-items: flex-start; }
     .product-name, .product-date, .product-price { text-align: left; margin-bottom: 4px; }
