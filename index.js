@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
             items.forEach(item => {
                 const li = document.createElement('li');
                 li.innerHTML = `
-                    <span style="flex:1;">${item.item}</span>
+                    <span style="flex:1;">${item.name}</span>
                     <span style="flex:1; text-align:center; color:gray;">${formatDate(item.date)}</span>
                     <span style="flex:1; text-align:right; color:red; font-weight:bold;">NT$${item.price}</span>
                 `;
