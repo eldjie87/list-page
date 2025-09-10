@@ -1,15 +1,36 @@
-/* style.css */
-
 /* Reset dan font */
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-color: #f9f9f9;
 }
 
 /* Container utama */
 #shopping-list {
-    max-width: 600px;
+    width: 100%;
+    max-width: 700px;
     margin: 0 auto;
+    background: #fff;
+    border-radius: 8px;
+    padding: 10px 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin: 0;
+}
+
+.total {
+    font-weight: bold;
+    color: green;
 }
 
 /* List items */
@@ -19,13 +40,25 @@ ul {
     margin: 0;
 }
 
-li {
+li, .product-row {
     display: flex;
     justify-content: space-between;
-    padding: 8px 10px;
-    border-bottom: 1px solid #ccc;
     align-items: center;
+    width: 100%;
+    padding: 10px 8px;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+    transition: background 0.2s;
 }
+
+li:hover {
+    background-color: #f1f1f1;
+}
+
+/* Product row columns */
+.product-name { flex: 1; text-align: left; font-weight: 500; }
+.product-date { flex: 1; text-align: center; color: gray; }
+.product-price { flex: 1; text-align: right; color: red; font-weight: bold; }
 
 /* Tombol delete */
 .deleteProduct {
@@ -33,6 +66,17 @@ li {
     color: red;
     font-weight: bold;
     margin-left: 10px;
+    transition: color 0.2s;
+}
+
+.deleteProduct:hover {
+    color: darkred;
+}
+
+/* Empty state */
+.empty {
+    text-align: center;
+    color: #999;
 }
 
 /* Google Translate */
@@ -43,61 +87,10 @@ li {
     z-index: 1000;
 }
 
-/* Judul & total */
-h2 {
-    margin: 0;
-}
-
-.total {
-    font-weight: bold;
-    color: green;
-}
-
 /* Responsive */
-@media (max-width: 480px) {
-    li {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    li span {
-        margin-bottom: 4px;
-    }
-
-    #shopping-list {
-        margin: 10px;
-    }
+@media (max-width: 600px) {
+    #shopping-list { padding: 8px 10px; }
+    li, .product-row { flex-direction: column; align-items: flex-start; }
+    .product-name, .product-date, .product-price { text-align: left; margin-bottom: 4px; }
+    .deleteProduct { margin-left: 0; margin-top: 4px; }
 }
-
-
-
-/* Row item */
-.product-row {
-    display: flex;
-    width: 100%; /* full width */
-    justify-content: space-between; /* spasi antar elemen */
-    align-items: center;
-    padding: 8px 10px;
-    border-bottom: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-/* Spesifik posisi */
-.product-name {
-    text-align: left;
-    flex: 1;
-}
-
-.product-date {
-    text-align: center;
-    flex: 1;
-    color: gray;
-}
-
-.product-price {
-    text-align: right;
-    flex: 1;
-    color: red;
-    font-weight: bold;
-}
-
