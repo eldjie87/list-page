@@ -18,7 +18,7 @@
       <div class="saldo">
         <h5 class="balance">Loading...</h5>
       </div>
-      <div id="total-price" class="total">Total: NT$0.00</div>
+      <div id="total-price" class="total">Total cost: NT$0.00</div>
     </div>
     <ul id="item-list" class="products"></ul>
   </div>
@@ -36,7 +36,7 @@
             const saldo = result.data.saldo !== undefined
               ? result.data.saldo
               : (result.data && result.data[0] && result.data[0].saldo) || 0;
-            balanceElement.textContent = `Balance: NT$ ${saldo}`;
+            balanceElement.textContent = `Money balance: NT$ ${saldo}`;
           } else {
             balanceElement.textContent = 'Error fetching balance';
             console.error('Error fetching balance:', result.error);
