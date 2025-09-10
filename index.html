@@ -75,7 +75,7 @@
               <span style="flex:1;">${item.name}</span>
               <span style="flex:1; text-align:center; color:gray;">${formatDate(item.date)}</span>
               <span style="flex:1; text-align:right; color:red; font-weight:bold;">NT$${item.price}</span>
-              //<span class="deleteProduct" data-id="${item.id}">✖</span>
+              <span class="deleteProduct" data-id="${item.id}"></span>
             `;
             itemList.appendChild(li);
             total += Number(item.price) || 0;
