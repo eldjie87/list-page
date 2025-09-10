@@ -15,6 +15,9 @@
     <div id="shopping-list">
         <div style="display:flex; justify-content: space-between; align-items:center; margin-bottom: 10px;">
             <h2>Shopping List</h2>
+            <div class="saldo">
+                <h5 class="balance"></h5>
+            </div>
             <div id="total-price" class="total">Total: NT$0.00</div>
         </div>
         <ul id="item-list" class="products"></ul>
@@ -22,6 +25,29 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+                //fetch balance
+    const balanceElement = div.querySelector(".balance");
+    async function fetchBalance() {
+        try {
+            const response = await fetch('api/saldo');
+            const result = await response.json();
+            if (response.ok) {
+                const saldo = result.data.saldo !== undefined
+                    ? result.data.saldo
+                    : (result.data && result.data[0] && result.data[0].saldo) || 0;
+                balanceElement.textContent = `Balance: NT$ ${saldo}`;
+            } else {
+                balanceElement.textContent = 'Error fetching balance';
+                console.error('Error fetching balance:', result.error);
+            }
+        } catch (error) {
+            balanceElement.textContent = 'Error fetching balance';
+            console.error('Network error:', error);
+        }
+    }
+    fetchBalance();
+
+            
             const itemList = document.getElementById('item-list');
             const totalPrice = document.getElementById('total-price');
 
