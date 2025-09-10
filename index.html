@@ -75,7 +75,7 @@
               <span style="flex:1;">${item.name}</span>
               <span style="flex:1; text-align:center; color:gray;">${formatDate(item.date)}</span>
               <span style="flex:1; text-align:right; color:red; font-weight:bold;">NT$${item.price}</span>
-              <span class="deleteProduct" data-id="${item.id}">✖</span>
+              //<span class="deleteProduct" data-id="${item.id}">✖</span>
             `;
             itemList.appendChild(li);
             total += Number(item.price) || 0;
@@ -90,22 +90,22 @@
       }
 
       // Event delegation untuk delete
-      itemList.addEventListener('click', async (e) => {
-        if (e.target.classList.contains('deleteProduct')) {
-          const id = e.target.getAttribute('data-id');
-          try {
-            const response = await fetch(`https://www.eldjie.uk/api/products/${id}`, { method: 'DELETE' });
-            const result = await response.json();
-            if (response.ok) {
-              fetchProducts();
-            } else {
-              alert('Error deleting product: ' + result.error);
-            }
-          } catch (error) {
-            alert('Network error: ' + error.message);
-          }
-        }
-      });
+      // itemList.addEventListener('click', async (e) => {
+      //   if (e.target.classList.contains('deleteProduct')) {
+      //     const id = e.target.getAttribute('data-id');
+      //     try {
+      //       const response = await fetch(`https://www.eldjie.uk/api/products/${id}`, { method: 'DELETE' });
+      //       const result = await response.json();
+      //       if (response.ok) {
+      //         fetchProducts();
+      //       } else {
+      //         alert('Error deleting product: ' + result.error);
+      //       }
+      //     } catch (error) {
+      //       alert('Network error: ' + error.message);
+      //     }
+      //   }
+      // });
 
       function formatDate(date) {
         if (!date) return '-';
