@@ -1,96 +1,161 @@
-/* Reset dan font */
+/* Reset & font */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f9f9f9;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f9fafb;
+  color: #333;
+  line-height: 1.5;
+  padding: 16px;
 }
 
 /* Container utama */
 #shopping-list {
-    width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
-    background: #fff;
-    border-radius: 8px;
-    padding: 10px 15px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 /* Header */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+#shopping-list h2 {
+  font-size: 1.4rem;
+  color: #222;
 }
 
-h2 {
-    margin: 0;
+.header-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.balance {
+  font-size: 0.95rem;
+  color: #0d6efd;
+  font-weight: bold;
 }
 
 .total {
-    font-weight: bold;
-    color: green;
+  font-weight: bold;
+  color: #16a34a;
+  font-size: 1rem;
 }
 
-/* List items */
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+/* List */
+ul.products {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-li, .product-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 10px 8px;
-    border-bottom: 1px solid #eee;
-    box-sizing: border-box;
-    transition: background 0.2s;
+ul.products li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 10px;
+  border-bottom: 1px solid #e5e7eb;
+  transition: background 0.2s;
 }
 
-li:hover {
-    background-color: #f1f1f1;
+ul.products li:hover {
+  background: #f3f4f6;
 }
 
-/* Product row columns */
-.product-name { flex: 1; text-align: left; font-weight: 500; }
-.product-date { flex: 1; text-align: center; color: gray; }
-.product-price { flex: 1; text-align: right; color: red; font-weight: bold; }
+.product-name {
+  flex: 1;
+  text-align: left;
+  font-weight: 500;
+}
+
+.product-date {
+  flex: 1;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.product-price {
+  flex: 1;
+  text-align: right;
+  font-weight: bold;
+  color: #dc2626;
+}
 
 /* Tombol delete */
 .deleteProduct {
-    cursor: pointer;
-    color: red;
-    font-weight: bold;
-    margin-left: 10px;
-    transition: color 0.2s;
+  margin-left: 8px;
+  cursor: pointer;
+  color: #ef4444;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: color 0.2s;
 }
 
 .deleteProduct:hover {
-    color: darkred;
-}
-
-/* Empty state */
-.empty {
-    text-align: center;
-    color: #999;
+  color: #b91c1c;
 }
 
 /* Google Translate */
 #google_translate_element {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    z-index: 1000;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  background: #fff;
+  border-radius: 6px;
+  padding: 4px 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    #shopping-list { padding: 8px 10px; }
-    li, .product-row { flex-direction: column; align-items: flex-start; }
-    .product-name, .product-date, .product-price { text-align: left; margin-bottom: 4px; }
-    .deleteProduct { margin-left: 0; margin-top: 4px; }
+/* ===============================
+   📱 Responsiveness
+   =============================== */
+
+/* Mobile */
+@media (max-width: 600px) {
+  body {
+    padding: 8px;
+  }
+
+  #shopping-list {
+    padding: 12px;
+  }
+
+  .header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  ul.products li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .product-name,
+  .product-date,
+  .product-price {
+    flex: unset;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 4px;
+  }
+
+  .product-price {
+    color: #dc2626;
+    font-size: 1rem;
+  }
+
+  .deleteProduct {
+    align-self: flex-end;
+  }
 }
