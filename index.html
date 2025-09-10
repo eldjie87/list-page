@@ -1,24 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List</title>
+    <title>Monthly Shopping List</title>
 </head>
 
 <body>
+    <!-- Google Translate -->
+    <div id="google_translate_element"></div>
+
     <div id="shopping-list">
-    <!--<div class="tanggal"><span id="tanggal"></span></div>-->
         <div style="display:flex; justify-content: space-between; align-items:center; margin-bottom: 10px;">
-            <h2>Monthly shopping list</h2>
-            <div id="total-price">Total: NT$0.00</div>
+            <h2>Monthly Shopping List</h2>
+            <div id="total-price" class="total">Total: NT$0.00</div>
         </div>
-        <ul id="item-list"></ul>
+        <ul id="item-list" class="products"></ul>
     </div>
-    <script src="index.js"></script>
-        <script type="text/javascript">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const itemList = document.getElementById('item-list');
+            const totalPrice = document.getElementById('total-price');
+
+            async function fetchProducts() {
+                try {
+                    const res = await fetch('https://www.eldjie.uk/api/products');
+                    const data = await res.json();
+                    const items = Array.isArray(data.product) ? data.product : [];
+
+                    itemList.innerHTML = '';
+                    let total = 0;
+
+                    if (items.length === 0) {
+                        itemList.innerHTML = '<li>No products found</li>';
+                        totalPrice.textContent = 'Total: NT$0';
+                        return;
+                    }
+
+                    items.forEach(item => {
+                        const li = document.createElement("li");
+                        li.innerHTML = `
+                            <span style="flex:1;">${item.name}</span>
+                            <span style="flex:1; text-align:center; color:gray;">${formatDate(item.date)}</span>
+                            <span style="flex:1; text-align:right; color:red; font-weight:bold;">NT$${item.price}</span>
+                            <span class="deleteProduct" data-id="${item.id}">🗑️</span>
+                        `;
+                        itemList.appendChild(li);
+                        total += Number(item.price) || 0;
+                    });
+
+                    totalPrice.textContent = `Total: NT$${total.toLocaleString()}`;
+                } catch (error) {
+                    console.error('Error updating item list:', error);
+                    itemList.innerHTML = '<li>Error fetching products</li>';
+                    totalPrice.textContent = 'Total: NT$0';
+                }
+            }
+
+            // Event delegation untuk delete
+            itemList.addEventListener('click', async (e) => {
+                if (e.target.classList.contains('deleteProduct')) {
+                    const id = e.target.getAttribute('data-id');
+                    try {
+                        const response = await fetch(`https://www.eldjie.uk/api/products/${id}`, { method: 'DELETE' });
+                        const result = await response.json();
+                        if (response.ok) {
+                            fetchProducts();
+                        } else {
+                            alert('Error deleting product: ' + result.error);
+                        }
+                    } catch (error) {
+                        alert('Network error: ' + error.message);
+                    }
+                }
+            });
+
+            function formatDate(date) {
+                if (!date) return '-';
+                const d = new Date(date);
+                return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+            }
+
+            fetchProducts();
+            setInterval(fetchProducts, 3000); // refresh setiap 3 detik
+        });
+
+        // Google Translate
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'id',
