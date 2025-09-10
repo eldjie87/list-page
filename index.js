@@ -5,9 +5,18 @@ document.addEventListener('DOMContentLoaded', function () {
     async function updateItemList() {
         try {
             const res = await fetch('https://www.eldjie.uk/api/products');
-            const items = await res.json();
+            const data = await res.json();
+            const items = Array.isArray(data.product) ? data.product : [];
+
             itemList.innerHTML = '';
             let total = 0;
+
+            if (items.length === 0) {
+                itemList.innerHTML = '<li>No products found</li>';
+                totalPrice.textContent = 'Total: NT$0';
+                return;
+            }
+
             items.forEach(item => {
                 const li = document.createElement('li');
                 li.innerHTML = `
@@ -18,11 +27,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 li.style.display = "flex";
                 li.style.alignItems = "center";
                 itemList.appendChild(li);
-                total += Number(item.price);
+                total += Number(item.price) || 0;
             });
+
             totalPrice.textContent = `Total: NT$${total.toLocaleString()}`;
         } catch (error) {
             console.error('Error updating item list:', error);
+            itemList.innerHTML = '<li>Error fetching products</li>';
+            totalPrice.textContent = 'Total: NT$0';
         }
     }
 
@@ -34,4 +46,5 @@ document.addEventListener('DOMContentLoaded', function () {
         return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     }
 
+    updateItemList(); // panggil pertama kali saat load
 });
