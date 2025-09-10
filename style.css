@@ -68,3 +68,36 @@ h2 {
         margin: 10px;
     }
 }
+
+
+
+/* Row item */
+.product-row {
+    display: flex;
+    width: 100%; /* full width */
+    justify-content: space-between; /* spasi antar elemen */
+    align-items: center;
+    padding: 8px 10px;
+    border-bottom: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Spesifik posisi */
+.product-name {
+    text-align: left;
+    flex: 1;
+}
+
+.product-date {
+    text-align: center;
+    flex: 1;
+    color: gray;
+}
+
+.product-price {
+    text-align: right;
+    flex: 1;
+    color: red;
+    font-weight: bold;
+}
+
