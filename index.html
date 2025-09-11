@@ -81,7 +81,7 @@
             total += Number(item.price) || 0;
           });
 
-          totalPrice.textContent = `Total: NT$${total.toLocaleString()}`;
+          totalPrice.textContent = `Total cost: NT$${total.toLocaleString()}`;
         } catch (error) {
           console.error('Error updating item list:', error);
           itemList.innerHTML = '<li>Error fetching products</li>';
