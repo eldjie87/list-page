@@ -1,229 +1,197 @@
-/* dashboard.css */
-
-/* Root wrapper */
-.dashboard-root {
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  max-width: 900px;
-  margin: auto;
-  color: #333;
-}
-
-/* Saldo Section */
-.saldo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.saldo h5.balance {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.saldo button.recharge {
-  background-color: #4caf50;
-  border: none;
-  padding: 8px 14px;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.saldo button.recharge:hover {
-  background-color: #45a049;
-}
-
-/* Button Container */
-.btnContainer {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.btnContainer button {
-  flex: 1;
-  padding: 10px 14px;
-  border: none;
-  border-radius: 6px;
-  background-color: #2196f3;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background 0.2s;
-}
-
-.btnContainer button:hover {
-  background-color: #1976d2;
-}
-
-.btnContainer .deleteAllProducts {
-  background-color: #f44336;
-}
-
-.btnContainer .deleteAllProducts:hover {
-  background-color: #d32f2f;
-}
-
-.btnContainer .viewSavedFiles {
-  background-color: #9c27b0;
-}
-
-.btnContainer .viewSavedFiles:hover {
-  background-color: #7b1fa2;
-}
-
-/* Product List */
-.productList {
-  margin-top: 20px;
-  border-top: 2px solid #eee;
-  padding-top: 15px;
-}
-
-.productListHeader {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.productList ul.products {
-  list-style: none;
+/* =====================
+   Reset dasar
+===================== */
+body, h1, h2, h3, h4, h5, h6, ul, li, p {
+  margin: 0;
   padding: 0;
 }
 
-.productList ul.products li {
-  display: grid;
-  grid-template-columns: 1fr 120px 100px 40px;
-  align-items: center;
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  color: #333;
+  line-height: 1.5;
+}
+
+/* =====================
+   Container utama
+===================== */
+#shopping-list {
+  max-width: 800px;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#shopping-list h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.saldo {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.total {
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+/* =====================
+   Tombol group
+===================== */
+.btn-group {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.btn-group button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: #3498db;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-group button:hover {
+  background: #2980b9;
+}
+
+/* =====================
+   List produk
+===================== */
+.products {
+  list-style: none;
+  margin-top: 15px;
+}
+
+.products li {
+  display: flex;
+  justify-content: space-between;
   padding: 10px;
   border-bottom: 1px solid #eee;
 }
 
-.productList ul.products li span.deleteProduct {
-  cursor: pointer;
-  color: #f44336;
+.products li span {
+  flex: 1;
   text-align: center;
 }
 
-.productList ul.products li span.deleteProduct:hover {
-  color: #d32f2f;
+.products li span:first-child {
+  text-align: left;
 }
 
-/* Modal */
+.products li span:last-child {
+  text-align: right;
+  font-weight: bold;
+  color: #e74c3c;
+}
+
+/* =====================
+   Modal
+===================== */
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0,0,0,0.5);
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   z-index: 1000;
+  padding: 10px;
 }
 
 .modal-content {
   background: #fff;
   border-radius: 10px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;       /* ✅ biar bisa scroll di HP */
   padding: 20px;
-  max-width: 500px;
-  width: 90%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   position: relative;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.modal-content h2 {
-  margin-bottom: 15px;
-}
-
-.modal-content form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.modal-content input,
-.modal-content button {
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-}
-
-.modal-content button {
-  border: none;
-  cursor: pointer;
-  background-color: #2196f3;
-  color: white;
-}
-
-.modal-content button:hover {
-  background-color: #1976d2;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .close-button {
   position: absolute;
   top: 10px;
-  right: 14px;
-  font-size: 20px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
   cursor: pointer;
-  color: #888;
 }
 
 .close-button:hover {
-  color: #000;
+  color: red;
 }
 
-/* Saved Files List */
+/* =====================
+   Saved Files
+===================== */
 .savedFilesList {
   list-style: none;
-  padding: 0;
+  margin-top: 15px;
 }
 
 .savedFilesList li {
   display: flex;
   justify-content: space-between;
-  padding: 8px;
-  border-bottom: 1px solid #eee;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
 }
 
-.savedFilesList li span.viewfile {
-  color: #2196f3;
+.savedFilesList button {
+  background: #27ae60;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
   cursor: pointer;
-}
-
-.savedFilesList li span.viewfile:hover {
-  text-decoration: underline;
-}
-
-.savedFilesList li span.deletefile {
-  color: #f44336;
-  cursor: pointer;
-}
-
-.savedFilesList li span.deletefile:hover {
-  color: #d32f2f;
-}
-
-/* Footer */
-footer {
-  margin-top: 30px;
-  text-align: center;
   font-size: 12px;
-  color: #888;
 }
 
-/* Animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
+.savedFilesList button:hover {
+  background: #1e8449;
+}
+
+/* =====================
+   Responsif (HP)
+===================== */
+@media (max-width: 600px) {
+  #shopping-list {
+    margin: 10px;
+    padding: 15px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .btn-group {
+    flex-direction: column;
+  }
+
+  .btn-group button {
+    width: 100%;
+  }
+
+  .products li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .products li span {
+    text-align: left;
+    margin: 2px 0;
   }
 }
