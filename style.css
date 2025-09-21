@@ -1,161 +1,229 @@
-/* Reset & font */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+/* dashboard.css */
 
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: #f9fafb;
+/* Root wrapper */
+.dashboard-root {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
   color: #333;
-  line-height: 1.5;
-  padding: 16px;
 }
 
-/* Container utama */
-#shopping-list {
-  max-width: 800px;
-  margin: 0 auto;
-  background: #fff;
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-/* Header */
-#shopping-list h2 {
-  font-size: 1.4rem;
-  color: #222;
-}
-
-.header-top {
+/* Saldo Section */
+.saldo {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 16px;
+  margin-bottom: 15px;
 }
 
-.balance {
-  font-size: 0.95rem;
-  color: #0d6efd;
+.saldo h5.balance {
+  font-size: 16px;
   font-weight: bold;
 }
 
-.total {
-  font-weight: bold;
-  color: #16a34a;
-  font-size: 1rem;
+.saldo button.recharge {
+  background-color: #4caf50;
+  border: none;
+  padding: 8px 14px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-/* List */
-ul.products {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.saldo button.recharge:hover {
+  background-color: #45a049;
 }
 
-ul.products li {
+/* Button Container */
+.btnContainer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 10px;
-  border-bottom: 1px solid #e5e7eb;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btnContainer button {
+  flex: 1;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #2196f3;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
   transition: background 0.2s;
 }
 
-ul.products li:hover {
-  background: #f3f4f6;
+.btnContainer button:hover {
+  background-color: #1976d2;
 }
 
-.product-name {
-  flex: 1;
-  text-align: left;
-  font-weight: 500;
+.btnContainer .deleteAllProducts {
+  background-color: #f44336;
 }
 
-.product-date {
-  flex: 1;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #6b7280;
+.btnContainer .deleteAllProducts:hover {
+  background-color: #d32f2f;
 }
 
-.product-price {
-  flex: 1;
-  text-align: right;
-  font-weight: bold;
-  color: #dc2626;
+.btnContainer .viewSavedFiles {
+  background-color: #9c27b0;
 }
 
-/* Tombol delete */
-.deleteProduct {
-  margin-left: 8px;
+.btnContainer .viewSavedFiles:hover {
+  background-color: #7b1fa2;
+}
+
+/* Product List */
+.productList {
+  margin-top: 20px;
+  border-top: 2px solid #eee;
+  padding-top: 15px;
+}
+
+.productListHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.productList ul.products {
+  list-style: none;
+  padding: 0;
+}
+
+.productList ul.products li {
+  display: grid;
+  grid-template-columns: 1fr 120px 100px 40px;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.productList ul.products li span.deleteProduct {
   cursor: pointer;
-  color: #ef4444;
-  font-weight: bold;
-  font-size: 1.2rem;
-  transition: color 0.2s;
+  color: #f44336;
+  text-align: center;
 }
 
-.deleteProduct:hover {
-  color: #b91c1c;
+.productList ul.products li span.deleteProduct:hover {
+  color: #d32f2f;
 }
 
-/* Google Translate */
-#google_translate_element {
+/* Modal */
+.modal {
   position: fixed;
-  top: 10px;
-  right: 10px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 1000;
-  background: #fff;
-  border-radius: 6px;
-  padding: 4px 6px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* ===============================
-   📱 Responsiveness
-   =============================== */
+.modal-content {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
 
-/* Mobile */
-@media (max-width: 600px) {
-  body {
-    padding: 8px;
+.modal-content h2 {
+  margin-bottom: 15px;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-content input,
+.modal-content button {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.modal-content button {
+  border: none;
+  cursor: pointer;
+  background-color: #2196f3;
+  color: white;
+}
+
+.modal-content button:hover {
+  background-color: #1976d2;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #888;
+}
+
+.close-button:hover {
+  color: #000;
+}
+
+/* Saved Files List */
+.savedFilesList {
+  list-style: none;
+  padding: 0;
+}
+
+.savedFilesList li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.savedFilesList li span.viewfile {
+  color: #2196f3;
+  cursor: pointer;
+}
+
+.savedFilesList li span.viewfile:hover {
+  text-decoration: underline;
+}
+
+.savedFilesList li span.deletefile {
+  color: #f44336;
+  cursor: pointer;
+}
+
+.savedFilesList li span.deletefile:hover {
+  color: #d32f2f;
+}
+
+/* Footer */
+footer {
+  margin-top: 30px;
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
   }
-
-  #shopping-list {
-    padding: 12px;
-  }
-
-  .header-top {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-  }
-
-  ul.products li {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .product-name,
-  .product-date,
-  .product-price {
-    flex: unset;
-    width: 100%;
-    text-align: left;
-    margin-bottom: 4px;
-  }
-
-  .product-price {
-    color: #dc2626;
-    font-size: 1rem;
-  }
-
-  .deleteProduct {
-    align-self: flex-end;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
