@@ -164,6 +164,19 @@ body {
   font-size: 12px;
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #f7f7f7; /* atau warna sesuai tema */
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  padding: 8px 0;
+  box-shadow: 0 -2px 5px rgba(0,0,0
+
+
 .savedFilesList button:hover {
   background: #1e8449;
 }
