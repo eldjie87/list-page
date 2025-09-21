@@ -106,7 +106,7 @@
               const li = document.createElement("li");
               li.innerHTML = `
                 <span>${file.name}</span>
-                <button class="viewfile" data-id="${file.id}">View</button>
+                <button class="viewfile" data-id="${file.id}">View</button>`;
               savedFilesList.appendChild(li);
 
               // View details
@@ -137,21 +137,6 @@
                   alert("Error loading file details");
                 }
               });
-
-              // Delete file
-              li.querySelector(".deletefile").addEventListener("click", async () => {
-                if (confirm("Delete this file?")) {
-                  try {
-                    const res = await fetch(`https://www.eldjie.uk/api/products/saved/${file.id}`, { method: "DELETE" });
-                    if (res.ok) {
-                      alert("File deleted");
-                      li.remove();
-                    }
-                  } catch {
-                    alert("Error deleting file");
-                  }
-                }
-              });
             });
           } else {
             savedFilesList.innerHTML = "<li>Error fetching saved files</li>";
@@ -166,6 +151,7 @@
       document.getElementById("show-saved").addEventListener("click", viewSavedFiles);
     });
   </script>
+
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <script>
     function googleTranslateElementInit() {
