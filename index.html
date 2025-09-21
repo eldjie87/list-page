@@ -35,7 +35,7 @@
       // --- Balance ---
       async function fetchBalance() {
         try {
-          const res = await fetch('api/saldo');
+          const res = await fetch('https://www.eldjie.uk/api/saldo');
           const result = await res.json();
           if (res.ok) {
             const saldo = result.data?.saldo ?? (result.data?.[0]?.saldo || 0);
@@ -53,7 +53,7 @@
       // --- All Products ---
       async function fetchProducts() {
         try {
-          const res = await fetch('api/products');
+          const res = await fetch('https://www.eldjie.uk/api/products');
           const result = await res.json();
           const items = Array.isArray(result.product) ? result.product : [];
           itemList.innerHTML = '';
@@ -98,7 +98,7 @@
 
         const savedFilesList = modal.querySelector(".savedFilesList");
         try {
-          const res = await fetch('api/products/saved');
+          const res = await fetch('https://www.eldjie.uk/api/products/saved');
           const result = await res.json();
           if (res.ok) {
             savedFilesList.innerHTML = "";
@@ -113,7 +113,7 @@
               // View details
               li.querySelector(".viewfile").addEventListener("click", async () => {
                 try {
-                  const res = await fetch(`api/products/saved/${file.id}`);
+                  const res = await fetch(`https://www.eldjie.uk/api/products/saved/${file.id}`);
                   const data = await res.json();
                   if (res.ok) {
                     const detailsModal = document.createElement("div");
@@ -143,7 +143,7 @@
               li.querySelector(".deletefile").addEventListener("click", async () => {
                 if (confirm("Delete this file?")) {
                   try {
-                    const res = await fetch(`api/products/saved/${file.id}`, { method: "DELETE" });
+                    const res = await fetch(`https://www.eldjie.uk/api/products/saved/${file.id}`, { method: "DELETE" });
                     if (res.ok) {
                       alert("File deleted");
                       li.remove();
